@@ -52,7 +52,8 @@ public class AgendaImplementada implements IAgenda {
 
     @Override
     public void removeTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.contatos = new IContato[1];
+        this.contador = 0;
     }
 
     @Override
