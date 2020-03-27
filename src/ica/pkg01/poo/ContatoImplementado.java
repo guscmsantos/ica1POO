@@ -37,5 +37,11 @@ public class ContatoImplementado implements IContato {
         this.telefone = telefone;
     }
     
+    @Override
+    public String toString()
+    {
+        return this.getNome() +" tel: " + this.getTelefone();
+    }
+    
     
 }

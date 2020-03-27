@@ -58,7 +58,7 @@ public class AgendaImplementada implements IAgenda {
 
     @Override
     public IContato selecionaContato(int posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.contatos[posicao];
     }
 
     @Override
