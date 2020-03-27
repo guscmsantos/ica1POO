@@ -16,6 +16,7 @@ public class AgendaImplementada implements IAgenda {
     public AgendaImplementada()
     {
         this.contatos = new IContato[1];
+        this.contador = 0;
     }
     
     @Override
@@ -61,7 +62,14 @@ public class AgendaImplementada implements IAgenda {
 
     @Override
     public int posicao(IContato contato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int i = 0; i < this.contador ; i++ )
+        {
+            if(this.contatos[i].getNome().equals(contato.getNome()) && this.contatos[i].getTelefone() == contato.getTelefone())
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 
     @Override
