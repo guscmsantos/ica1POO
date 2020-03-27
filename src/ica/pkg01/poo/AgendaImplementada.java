@@ -23,12 +23,30 @@ public class AgendaImplementada implements IAgenda {
     public void insereContato(IContato contato) {
         if(this.contador == 0)
         {
+            this.contatos = new IContato[2];
             this.contatos[0] = contato;
-            this.contador++;
+            this.contador ++;
         }
         else
         {
-            
+            if(this.contador == this.contatos.length)
+            {
+                int qtd = this.contatos.length * 2;
+                IContato[] aux = new ContatoImplementado[this.contatos.length * 2];
+                int i;
+                for(i = 0; i< this.contatos.length; i++)
+                {
+                    aux[i] = this.contatos[i];
+                }
+                aux[i] = contato;
+                this.contatos = aux;
+                this.contador++;
+            }
+            else
+            {
+                this.contatos[this.contador] = contato;
+                this.contador++;
+            }   
         }
     }
 
@@ -39,9 +57,9 @@ public class AgendaImplementada implements IAgenda {
 
     @Override
     public void mostraDadosContatos() {
-        for(int i=0; i< contatos.length; i++)
+        for(int i=0; i< this.contador; i++)
         {
-            System.out.println("Posição "+i+" = "+ contatos[i].getNome() + " tel: " + contatos[i].getTelefone());
+            System.out.println("Posição "+i+" = "+ this.contatos[i].toString());
         }
     }
 
