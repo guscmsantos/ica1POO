@@ -31,7 +31,6 @@ public class AgendaImplementada implements IAgenda {
         {
             if(this.contador == this.contatos.length)
             {
-                int qtd = this.contatos.length * 2;
                 IContato[] aux = new ContatoImplementado[this.contatos.length * 2];
                 int i;
                 for(i = 0; i< this.contatos.length; i++)
@@ -65,7 +64,49 @@ public class AgendaImplementada implements IAgenda {
 
     @Override
     public void removeContato(IContato contato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int posicao = this.posicao(contato);
+        if(posicao == -1)
+        {
+            System.out.println("Contato não encontrado na agenda");
+        }
+        else
+        {
+            if(posicao == 0)
+            {
+                for(int i = 1; i < this.contatos.length; i++)
+                {
+                    if(this.contatos.length -1 == i)
+                    {
+                        this.contatos[i-1] = null;
+                    }
+                    else
+                    {
+                        this.contatos[i-1] = this.contatos[i];
+                    }
+                }
+            }
+            else if(posicao + 1 == this.contador)
+            {
+                this.contatos[posicao] = null;
+            }
+            else
+            {
+                for(int i = posicao; i < this.contatos.length; i++)
+                {
+                    if(this.contatos.length -1 == i)
+                    {
+                        this.contatos[i-1] = null;
+                    }
+                    else
+                    {
+                        this.contatos[i] = this.contatos[i+1];
+                    }
+                }
+            }
+            this.contador--;
+        }
+        
+        
     }
 
     @Override
@@ -88,11 +129,19 @@ public class AgendaImplementada implements IAgenda {
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
 
     @Override
     public boolean altera(int posicao, IContato contatoEntra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(posicao <= this.totalContatos()-1)
+        {
+            this.contatos[posicao] = contatoEntra;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
